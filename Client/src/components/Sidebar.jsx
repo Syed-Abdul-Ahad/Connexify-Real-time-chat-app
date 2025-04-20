@@ -44,7 +44,7 @@ const Sidebar = () => {
         <div className="flex items-center gap-2">
           <Users className="size-6" />
           <span className="font-medium hidden lg:block">Contacts</span>
-          <div onClick={()=>setPopupVisible(true)}><PlusIcon className="lg:ml-28 size-6 cursor-pointer"/></div>
+          <div className="add-user" onClick={()=>setPopupVisible(true)}><PlusIcon className="lg:ml-28 size-6 cursor-pointer"/></div>
         </div>
       </div>
 
@@ -56,7 +56,7 @@ const Sidebar = () => {
             <button onClick={() => setPopupVisible(false)} className="text-xl">&times;</button>
           </div>
           <div className="flex flex-col items-center gap-5">
-              <input className="input h-9 input-bordered w-full pl-10" ref={emailRef} placeholder="Enter email here" type="text" />
+              <input className="input h-9 input-bordered w-full pl-10 email" ref={emailRef} placeholder="Enter email here" type="text" />
               <button type="submit" onClick={handleAddUser} className="btn btn-primary w-full h-4">Submit</button>
           </div>
           <div className="mt-4">
@@ -66,7 +66,7 @@ const Sidebar = () => {
 
 
       <div className="overflow-y-auto w-full py-3">
-        {users.map((user) => {
+        {users.map((user,index) => {
           return <button 
           key={user._id}
           onClick={()=>setSelectedUser(user)}
@@ -74,6 +74,7 @@ const Sidebar = () => {
             w-full p-3 flex items-center gap-3
             hover:bg-base-300 transition-colors
             ${selectedUser?._id===user._id ? "bg-base-300 ring-1 ring-base-300": ""}
+            selected-user-${index}
             `}
           >
             <div className="relative mx-auto lg:mx-0">
